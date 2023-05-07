@@ -18,7 +18,7 @@ import org.junit.runners.Suite.SuiteClasses;
     MainTest.Task1.class, //
     MainTest.Task2.class, //
     MainTest.Task3.class, //
-// MainTest.Task4.class, // Uncomment this line when to start Task 4
+    MainTest.Task4.class, //
 // MainTest.Task5.class, // Uncomment this line when to start Task 5
 // MainTest.Task6.class, // Uncomment this line when to start Task 5
 // MainTest.YourTests.class, // Uncomment this line to run your own tests
