@@ -2,7 +2,6 @@ package nz.ac.auckland.se281;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import nz.ac.auckland.se281.Main.Difficulty;
 
 public class Morra {
@@ -44,7 +43,7 @@ public class Morra {
   }
 
   private String[] checkValidInts(String[] inputs) {
-    // check if the input is two numbers that can be parsed as integers
+    // ensure the input is two numbers that can be parsed as integers
     while (inputs.length != 2 || !Utils.isInteger(inputs[0]) || !Utils.isInteger(inputs[1])) {
       MessageCli.INVALID_INPUT.printMessage();
       MessageCli.ASK_INPUT.printMessage();
@@ -58,7 +57,7 @@ public class Morra {
   private int[] checkValidRange() {
     int[] numbers = getInputFromUser();
 
-    // check if the numbers are within the valid range
+    // ensure the numbers are within the valid range
     while (numbers[0] < 1 || numbers[0] > 5 || numbers[1] < 1 || numbers[1] > 10) {
       MessageCli.INVALID_INPUT.printMessage();
       MessageCli.ASK_INPUT.printMessage();
