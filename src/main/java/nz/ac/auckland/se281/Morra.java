@@ -19,7 +19,7 @@ public class Morra {
   public void newGame(Difficulty difficulty, int pointsToWin, String[] options) {
     this.name = options[0];
     this.rounds.clear();
-    this.currentDifficulty = DifficultyFactory.chooseDifficultyLevel(difficulty);
+    this.currentDifficulty = DifficultyFactory.chooseDifficultyLevel(difficulty, rounds);
 
     MessageCli.WELCOME_PLAYER.printMessage(this.name);
   }
