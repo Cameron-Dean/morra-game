@@ -3,21 +3,24 @@ package nz.ac.auckland.se281;
 import java.util.ArrayList;
 import java.util.List;
 import nz.ac.auckland.se281.Main.Difficulty;
+import nz.ac.auckland.se281.difficulties.DifficultyLevel;
+import nz.ac.auckland.se281.difficulties.DifficultyFactory;
 
 public class Morra {
 
   private String name;
   private List<Round> rounds;
-  private Difficulty currentDifficulty;
+  private DifficultyLevel currentDifficulty;
 
   public Morra() {
     this.rounds = new ArrayList<>();
   }
 
   public void newGame(Difficulty difficulty, int pointsToWin, String[] options) {
-    this.currentDifficulty = difficulty;
-    this.rounds.clear();
     this.name = options[0];
+    this.rounds.clear();
+    this.currentDifficulty = DifficultyFactory.chooseDifficultyLevel(difficulty);
+
     MessageCli.WELCOME_PLAYER.printMessage(this.name);
   }
 
@@ -26,14 +29,17 @@ public class Morra {
     MessageCli.ASK_INPUT.printMessage();
 
     // get play from user, then display
-    int[] inputs = getValidInputs();
-    rounds.add(new Round(inputs[0], inputs[1]));
+    int[] humanPlay = getValidInputs();
+    rounds.add(new Round(humanPlay[0], humanPlay[1]));
     MessageCli.PRINT_INFO_HAND.printMessage(name, //
         Integer.toString(rounds.get(rounds.size() - 1).getFingers()), //
         Integer.toString(rounds.get(rounds.size() - 1).getSum()));
 
-    // TODO: get play from AI, then display
-
+    // get play from AI, then display
+    int[] jarvisPlay = currentDifficulty.getPlay();
+    MessageCli.PRINT_INFO_HAND.printMessage("Jarvis", //
+        Integer.toString(jarvisPlay[0]), //
+        Integer.toString(jarvisPlay[1]));
   }
 
   public void showStats() {
