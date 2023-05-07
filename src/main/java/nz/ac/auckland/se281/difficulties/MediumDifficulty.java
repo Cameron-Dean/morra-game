@@ -18,7 +18,7 @@ public class MediumDifficulty implements DifficultyLevel {
     if (rounds.size() <= 3) {
       return new RandomStrategy().decideFingersAndSum();
     } else {
-      return new AverageStrategy().decideFingersAndSum();
+      return new AverageStrategy(rounds).decideFingersAndSum();
     }
   }
 }
