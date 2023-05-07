@@ -1,9 +1,9 @@
 {
-    "editor.formatOnSave": true,
-    "[java]": {
-        "editor.defaultFormatter": "josevseb.google-java-format-for-vs-code",
-    },
-    "cSpell.words": [
-      "Morra"
-    ],
+  "editor.formatOnSave": true,
+  "[java]": {
+    "editor.defaultFormatter": "redhat.java",
+  },
+  "cSpell.words": [
+    "Morra"
+  ],
 }
