@@ -60,7 +60,18 @@ public class Morra {
   }
 
   public void showStats() {
-    // TODO: complete this method
+    if (this.pointsToWin == 0) {
+      MessageCli.GAME_NOT_STARTED.printMessage();
+      return;
+    }
+
+    MessageCli.PRINT_PLAYER_WINS.printMessage(name, //
+        Integer.toString(humanPoints), //
+        Integer.toString(pointsToWin - humanPoints));
+
+    MessageCli.PRINT_PLAYER_WINS.printMessage("Jarvis", //
+        Integer.toString(jarvisPoints), //
+        Integer.toString(pointsToWin - jarvisPoints));
   }
 
   private int[] getInputFromUser() {
