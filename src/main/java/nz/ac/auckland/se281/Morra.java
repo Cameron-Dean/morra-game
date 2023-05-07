@@ -40,6 +40,8 @@ public class Morra {
     MessageCli.PRINT_INFO_HAND.printMessage("Jarvis", //
         Integer.toString(jarvisPlay[0]), //
         Integer.toString(jarvisPlay[1]));
+
+    displayOutcome(humanPlay, jarvisPlay);
   }
 
   public void showStats() {
@@ -77,5 +79,17 @@ public class Morra {
     }
 
     return numbers;
+  }
+
+  private void displayOutcome(int[] humanPlay, int[] jarvisPlay) {
+    int trueSum = humanPlay[0] + jarvisPlay[0];
+
+    if (humanPlay[1] == trueSum && humanPlay[1] != jarvisPlay[1]) {
+      MessageCli.PRINT_OUTCOME_ROUND.printMessage("HUMAN_WINS");
+    } else if (jarvisPlay[1] == trueSum && humanPlay[1] != jarvisPlay[1]) {
+      MessageCli.PRINT_OUTCOME_ROUND.printMessage("AI_WINS");
+    } else {
+      MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
+    }
   }
 }
