@@ -14,6 +14,8 @@ public class DifficultyFactory {
         return new MediumDifficulty(rounds);
       case HARD:
         return new HardDifficulty(rounds);
+      case MASTER:
+        return new MasterDifficulty(rounds);
       default:
         return new EasyDifficulty();
     }

@@ -11,20 +11,30 @@ public class Morra {
   private String name;
   private List<Round> rounds;
   private DifficultyLevel currentDifficulty;
+  private int pointsToWin;
+  private int humanPoints;
+  private int jarvisPoints;
 
   public Morra() {
     this.rounds = new ArrayList<>();
+    this.pointsToWin = 0;
   }
 
   public void newGame(Difficulty difficulty, int pointsToWin, String[] options) {
+    resetGame();
     this.name = options[0];
-    this.rounds.clear();
     this.currentDifficulty = DifficultyFactory.chooseDifficultyLevel(difficulty, rounds);
+    this.pointsToWin = pointsToWin;
 
     MessageCli.WELCOME_PLAYER.printMessage(this.name);
   }
 
   public void play() {
+    if (this.pointsToWin == 0) {
+      MessageCli.GAME_NOT_STARTED.printMessage();
+      return;
+    }
+
     MessageCli.START_ROUND.printMessage(Integer.toString(rounds.size() + 1));
     MessageCli.ASK_INPUT.printMessage();
 
@@ -42,6 +52,11 @@ public class Morra {
         Integer.toString(jarvisPlay[1]));
 
     displayOutcome(humanPlay, jarvisPlay);
+
+    if (humanPoints == pointsToWin || jarvisPoints == pointsToWin) {
+      MessageCli.END_GAME.printMessage((humanPoints == pointsToWin) ? name : "Jarvis", Integer.toString(rounds.size()));
+      resetGame();
+    }
   }
 
   public void showStats() {
@@ -86,10 +101,19 @@ public class Morra {
 
     if (humanPlay[1] == trueSum && humanPlay[1] != jarvisPlay[1]) {
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("HUMAN_WINS");
+      this.humanPoints++;
     } else if (jarvisPlay[1] == trueSum && humanPlay[1] != jarvisPlay[1]) {
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("AI_WINS");
+      this.jarvisPoints++;
     } else {
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
     }
+  }
+
+  private void resetGame() {
+    this.rounds.clear();
+    this.pointsToWin = 0;
+    this.humanPoints = 0;
+    this.jarvisPoints = 0;
   }
 }
