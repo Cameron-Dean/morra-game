@@ -8,12 +8,15 @@ public class Morra {
 
   private String name;
   private List<Round> rounds;
+  private Difficulty currentDifficulty;
 
   public Morra() {
     this.rounds = new ArrayList<>();
   }
 
   public void newGame(Difficulty difficulty, int pointsToWin, String[] options) {
+    this.currentDifficulty = difficulty;
+    this.rounds.clear();
     this.name = options[0];
     MessageCli.WELCOME_PLAYER.printMessage(this.name);
   }
@@ -22,12 +25,15 @@ public class Morra {
     MessageCli.START_ROUND.printMessage(Integer.toString(rounds.size() + 1));
     MessageCli.ASK_INPUT.printMessage();
 
-    // get inputs from user for this round, then display
-    int[] inputs = checkValidRange();
+    // get play from user, then display
+    int[] inputs = getValidInputs();
     rounds.add(new Round(inputs[0], inputs[1]));
     MessageCli.PRINT_INFO_HAND.printMessage(name, //
         Integer.toString(rounds.get(rounds.size() - 1).getFingers()), //
         Integer.toString(rounds.get(rounds.size() - 1).getSum()));
+
+    // TODO: get play from AI, then display
+
   }
 
   public void showStats() {
@@ -54,7 +60,7 @@ public class Morra {
     return inputs;
   }
 
-  private int[] checkValidRange() {
+  private int[] getValidInputs() {
     int[] numbers = getInputFromUser();
 
     // ensure the numbers are within the valid range
