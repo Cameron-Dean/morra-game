@@ -26,15 +26,18 @@ public class TopStrategy implements Strategy {
     int mostCommonFingers = rounds.get(0).getFingers();
     int mostCommonCount = 0;
 
+    // loop through each round to get overall mode value in array
     for (int i = 0; i < rounds.size() - 1; i++) {
       int count = 0;
 
+      // loop through round within round to get number of times for each value
       for (int j = 0; j < rounds.size() - 1; j++) {
         if (rounds.get(j).getFingers() == rounds.get(i).getFingers()) {
           count++;
         }
 
         if (count > mostCommonCount) {
+          // new mode value found, update result
           mostCommonFingers = rounds.get(i).getFingers();
           mostCommonCount = count;
         }

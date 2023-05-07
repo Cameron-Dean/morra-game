@@ -2,9 +2,9 @@ package nz.ac.auckland.se281;
 
 import java.util.ArrayList;
 import java.util.List;
-import nz.ac.auckland.se281.Main.Difficulty;
-import nz.ac.auckland.se281.difficulties.DifficultyLevel;
 import nz.ac.auckland.se281.difficulties.DifficultyFactory;
+import nz.ac.auckland.se281.difficulties.DifficultyLevel;
+import nz.ac.auckland.se281.Main.Difficulty;
 
 public class Morra {
 
@@ -54,7 +54,8 @@ public class Morra {
     displayOutcome(humanPlay, jarvisPlay);
 
     if (humanPoints == pointsToWin || jarvisPoints == pointsToWin) {
-      MessageCli.END_GAME.printMessage((humanPoints == pointsToWin) ? name : "Jarvis", Integer.toString(rounds.size()));
+      MessageCli.END_GAME.printMessage((humanPoints == pointsToWin) ? name : "Jarvis", //
+          Integer.toString(rounds.size()));
       resetGame();
     }
   }
@@ -108,15 +109,19 @@ public class Morra {
   }
 
   private void displayOutcome(int[] humanPlay, int[] jarvisPlay) {
+    // calculate (human fingers + AI fingers)
     int trueSum = humanPlay[0] + jarvisPlay[0];
 
     if (humanPlay[1] == trueSum && humanPlay[1] != jarvisPlay[1]) {
+      // human won, AI did not win
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("HUMAN_WINS");
       this.humanPoints++;
     } else if (jarvisPlay[1] == trueSum && humanPlay[1] != jarvisPlay[1]) {
+      // human did not win, AI won
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("AI_WINS");
       this.jarvisPoints++;
     } else {
+      // human and AI guessed the same or neither guessed correctly
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
     }
   }

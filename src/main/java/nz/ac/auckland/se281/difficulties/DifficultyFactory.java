@@ -1,12 +1,14 @@
 package nz.ac.auckland.se281.difficulties;
 
 import java.util.List;
-import nz.ac.auckland.se281.Round;
 import nz.ac.auckland.se281.Main.Difficulty;
+import nz.ac.auckland.se281.Round;
 
 public class DifficultyFactory {
 
-  public static DifficultyLevel chooseDifficultyLevel(Difficulty difficultyLevel, List<Round> rounds) {
+  public static DifficultyLevel chooseDifficultyLevel(Difficulty difficultyLevel,
+      List<Round> rounds) {
+    // factory to swap between difficulty levels depending on what user chooses
     switch (difficultyLevel) {
       case EASY:
         return new EasyDifficulty();

@@ -18,13 +18,4 @@ public class Round {
   public int getSum() {
     return this.sum;
   }
-
-  // setter methods
-  public void setFingers(int fingers) {
-    this.fingers = fingers;
-  }
-
-  public void setSum(int sum) {
-    this.sum = sum;
-  }
 }

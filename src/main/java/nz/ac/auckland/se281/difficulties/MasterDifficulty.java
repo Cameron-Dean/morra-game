@@ -21,6 +21,7 @@ public class MasterDifficulty implements DifficultyLevel {
     } else if (rounds.size() % 2 == 0) {
       return new AverageStrategy(rounds).decideFingersAndSum();
     } else {
+      // every second round after round 3 should use top strategy
       return new TopStrategy(rounds).decideFingersAndSum();
     }
   }
