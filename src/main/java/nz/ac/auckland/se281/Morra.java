@@ -2,9 +2,9 @@ package nz.ac.auckland.se281;
 
 import java.util.ArrayList;
 import java.util.List;
+import nz.ac.auckland.se281.Main.Difficulty;
 import nz.ac.auckland.se281.difficulties.DifficultyFactory;
 import nz.ac.auckland.se281.difficulties.DifficultyLevel;
-import nz.ac.auckland.se281.Main.Difficulty;
 
 public class Morra {
 
@@ -41,20 +41,20 @@ public class Morra {
     // get play from user, then display
     int[] humanPlay = getValidInputs();
     rounds.add(new Round(humanPlay[0], humanPlay[1]));
-    MessageCli.PRINT_INFO_HAND.printMessage(name, //
-        Integer.toString(rounds.get(rounds.size() - 1).getFingers()), //
+    MessageCli.PRINT_INFO_HAND.printMessage(name,
+        Integer.toString(rounds.get(rounds.size() - 1).getFingers()),
         Integer.toString(rounds.get(rounds.size() - 1).getSum()));
 
     // get play from AI, then display
     int[] jarvisPlay = currentDifficulty.getPlay();
-    MessageCli.PRINT_INFO_HAND.printMessage("Jarvis", //
-        Integer.toString(jarvisPlay[0]), //
+    MessageCli.PRINT_INFO_HAND.printMessage("Jarvis",
+        Integer.toString(jarvisPlay[0]),
         Integer.toString(jarvisPlay[1]));
 
     displayOutcome(humanPlay, jarvisPlay);
 
     if (humanPoints == pointsToWin || jarvisPoints == pointsToWin) {
-      MessageCli.END_GAME.printMessage((humanPoints == pointsToWin) ? name : "Jarvis", //
+      MessageCli.END_GAME.printMessage((humanPoints == pointsToWin) ? name : "Jarvis",
           Integer.toString(rounds.size()));
       resetGame();
     }
@@ -66,12 +66,12 @@ public class Morra {
       return;
     }
 
-    MessageCli.PRINT_PLAYER_WINS.printMessage(name, //
-        Integer.toString(humanPoints), //
+    MessageCli.PRINT_PLAYER_WINS.printMessage(name,
+        Integer.toString(humanPoints),
         Integer.toString(pointsToWin - humanPoints));
 
-    MessageCli.PRINT_PLAYER_WINS.printMessage("Jarvis", //
-        Integer.toString(jarvisPoints), //
+    MessageCli.PRINT_PLAYER_WINS.printMessage("Jarvis",
+        Integer.toString(jarvisPoints),
         Integer.toString(pointsToWin - jarvisPoints));
   }
 
