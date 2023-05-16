@@ -61,6 +61,7 @@ public class Morra {
   }
 
   public void showStats() {
+    // check if currently in game
     if (this.pointsToWin == 0) {
       MessageCli.GAME_NOT_STARTED.printMessage();
       return;
