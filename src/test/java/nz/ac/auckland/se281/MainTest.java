@@ -21,7 +21,7 @@ import org.junit.runners.Suite.SuiteClasses;
     MainTest.Task4.class, //
     MainTest.Task5.class, //
     MainTest.Task6.class, //
-// MainTest.YourTests.class, // Uncomment this line to run your own tests
+    MainTest.YourTests.class
 })
 public class MainTest {
 
@@ -66,14 +66,14 @@ public class MainTest {
     }
 
     @Test
-    public void T1_01_new_game() throws Exception {
+    public void T1_G01_new_game() throws Exception {
       runCommands(NEW_GAME + " EASY 1", "Valerio");
       assertContains(WELCOME_PLAYER.getMessage("Valerio"));
       assertContains(END.getMessage());
     }
 
     @Test
-    public void T1_02_play_start_round() throws Exception {
+    public void T1_G02_play_start_round() throws Exception {
       runCommands(
           NEW_GAME + " EASY 1",
           "Valerio",
@@ -86,7 +86,7 @@ public class MainTest {
     }
 
     @Test
-    public void T1_03_play_ask_for_input() throws Exception {
+    public void T1_G03_play_ask_for_input() throws Exception {
       runCommands(
           NEW_GAME + " EASY 1",
           "Valerio",
@@ -98,7 +98,7 @@ public class MainTest {
     }
 
     @Test
-    public void T1_04_play_ask_for_input_wrong_sum() throws Exception {
+    public void T1_G04_play_ask_for_input_wrong_sum() throws Exception {
       runCommands(
           NEW_GAME + " EASY 1",
           "Valerio",
@@ -112,7 +112,7 @@ public class MainTest {
     }
 
     @Test
-    public void T1_05_play_ask_for_input_wrong_fingers() throws Exception {
+    public void T1_G05_play_ask_for_input_wrong_fingers() throws Exception {
       runCommands(
           NEW_GAME + " EASY 1",
           "Valerio",
@@ -126,7 +126,7 @@ public class MainTest {
     }
 
     @Test
-    public void T1_06_play_ask_for_input_ok() throws Exception {
+    public void T1_G06_play_ask_for_input_ok() throws Exception {
       runCommands(
           NEW_GAME + " EASY 1",
           "Valerio",
@@ -141,7 +141,7 @@ public class MainTest {
     }
 
     @Test
-    public void T1_07_play_ask_for_input_ok2() throws Exception {
+    public void T1_G07_play_ask_for_input_ok2() throws Exception {
       runCommands(
           NEW_GAME + " EASY 1",
           "Valerio",
@@ -156,7 +156,7 @@ public class MainTest {
     }
 
     @Test
-    public void T1_08_play_ask_for_input_ok_not_valid_two_rounds() throws Exception {
+    public void T1_G08_play_ask_for_input_ok_not_valid_two_rounds() throws Exception {
       runCommands(
           NEW_GAME + " EASY 2",
           "Valerio",
@@ -179,7 +179,7 @@ public class MainTest {
     }
 
     @Test
-    public void T1_09_play_ask_for_input_two_rounds_second_wrong() throws Exception {
+    public void T1_G09_play_ask_for_input_two_rounds_second_wrong() throws Exception {
       runCommands(
           NEW_GAME + " EASY 2",
           "Valerio",
@@ -202,7 +202,7 @@ public class MainTest {
     }
 
     @Test
-    public void T1_10_play_ask_for_input_two_rounds_second_wrong() throws Exception {
+    public void T1_G10_play_ask_for_input_two_rounds_second_wrong() throws Exception {
       runCommands(
           NEW_GAME + " EASY 2",
           "Valerio",
@@ -231,7 +231,7 @@ public class MainTest {
     }
 
     @Test
-    public void T2_01_play_ask_for_input_Jarvis() throws Exception {
+    public void T2_G01_play_ask_for_input_Jarvis() throws Exception {
       runCommands(
           NEW_GAME + " EASY 1",
           "Valerio",
@@ -249,7 +249,7 @@ public class MainTest {
     }
 
     @Test
-    public void T2_02_play_ask_for_input_Jarvis_random_seed() throws Exception {
+    public void T2_G02_play_ask_for_input_Jarvis_random_seed() throws Exception {
       Utils.random = new java.util.Random(1);
       runCommands(
           NEW_GAME + " EASY 1",
@@ -270,7 +270,7 @@ public class MainTest {
     }
 
     @Test
-    public void T2_03_play_ask_for_input_Jarvis_random_seed_two_rounds() throws Exception {
+    public void T2_G03_play_ask_for_input_Jarvis_random_seed_two_rounds() throws Exception {
       Utils.random = new java.util.Random(1);
       runCommands(
           NEW_GAME + " EASY 2",
@@ -295,7 +295,7 @@ public class MainTest {
     }
 
     @Test
-    public void T2_04_play_ask_for_input_Jarvis_random_seed_human_wins() throws Exception {
+    public void T2_G04_play_ask_for_input_Jarvis_random_seed_human_wins() throws Exception {
       Utils.random = new java.util.Random(0);
       runCommands(
           NEW_GAME + " EASY 1",
@@ -314,7 +314,7 @@ public class MainTest {
     }
 
     @Test
-    public void T2_05_play_ask_for_input_Jarvis_random_seed_jarvis_wins() throws Exception {
+    public void T2_G05_play_ask_for_input_Jarvis_random_seed_jarvis_wins() throws Exception {
       Utils.random = new java.util.Random(0);
       runCommands(
           NEW_GAME + " EASY 1",
@@ -334,7 +334,7 @@ public class MainTest {
     }
 
     @Test
-    public void T2_06_play_ask_for_input_Jarvis_random_seed_draw() throws Exception {
+    public void T2_G06_play_ask_for_input_Jarvis_random_seed_draw() throws Exception {
       Utils.random = new java.util.Random(0);
       runCommands(
           NEW_GAME + " EASY 1",
@@ -361,7 +361,7 @@ public class MainTest {
     }
 
     @Test
-    public void T3_01_play_ask_for_input_Jarvis() throws Exception {
+    public void T3_G01_play_ask_for_input_Jarvis() throws Exception {
       runCommands(
           NEW_GAME + " MEDIUM 1",
           "Valerio",
@@ -379,7 +379,7 @@ public class MainTest {
     }
 
     @Test
-    public void T3_02_play_ask_for_input_Jarvis_random_seed() throws Exception {
+    public void T3_G02_play_ask_for_input_Jarvis_random_seed() throws Exception {
       Utils.random = new java.util.Random(1);
       runCommands(
           NEW_GAME + " MEDIUM 1",
@@ -400,7 +400,7 @@ public class MainTest {
     }
 
     @Test
-    public void T3_03_play_ask_for_input_Jarvis_random_seed_two_rounds() throws Exception {
+    public void T3_G03_play_ask_for_input_Jarvis_random_seed_two_rounds() throws Exception {
       Utils.random = new java.util.Random(1);
       runCommands(
           NEW_GAME + " MEDIUM 2",
@@ -427,7 +427,7 @@ public class MainTest {
     }
 
     @Test
-    public void T3_04_play_ask_for_input_Jarvis_random_seed_three_rounds() throws Exception {
+    public void T3_G04_play_ask_for_input_Jarvis_random_seed_three_rounds() throws Exception {
       Utils.random = new java.util.Random(1);
       runCommands(
           NEW_GAME + " MEDIUM 3",
@@ -457,7 +457,7 @@ public class MainTest {
     }
 
     @Test
-    public void T3_05_play_ask_for_input_Jarvis_random_seed_four_rounds() throws Exception {
+    public void T3_G05_play_ask_for_input_Jarvis_random_seed_four_rounds() throws Exception {
       Utils.random = new java.util.Random(1);
       runCommands(
           NEW_GAME + " MEDIUM 4",
@@ -502,7 +502,7 @@ public class MainTest {
     }
 
     @Test
-    public void T3_06_play_ask_for_input_Jarvis_random_seed_five_rounds() throws Exception {
+    public void T3_G06_play_ask_for_input_Jarvis_random_seed_five_rounds() throws Exception {
       Utils.random = new java.util.Random(1);
       runCommands(
           NEW_GAME + " MEDIUM 3",
@@ -559,7 +559,7 @@ public class MainTest {
     }
 
     @Test
-    public void T4_01_play_ask_for_input_Jarvis() throws Exception {
+    public void T4_G01_play_ask_for_input_Jarvis() throws Exception {
       runCommands(
           NEW_GAME + " HARD 1",
           "Valerio",
@@ -577,7 +577,7 @@ public class MainTest {
     }
 
     @Test
-    public void T4_02_play_ask_for_input_Jarvis_random_seed() throws Exception {
+    public void T4_G02_play_ask_for_input_Jarvis_random_seed() throws Exception {
       Utils.random = new java.util.Random(1);
       runCommands(
           NEW_GAME + " HARD 1",
@@ -600,7 +600,7 @@ public class MainTest {
     }
 
     @Test
-    public void T4_03_play_ask_for_input_Jarvis_random_seed_two_rounds() throws Exception {
+    public void T4_G03_play_ask_for_input_Jarvis_random_seed_two_rounds() throws Exception {
       Utils.random = new java.util.Random(1);
       runCommands(
           NEW_GAME + " HARD 2",
@@ -627,7 +627,7 @@ public class MainTest {
     }
 
     @Test
-    public void T4_04_play_ask_for_input_Jarvis_random_seed_three_rounds() throws Exception {
+    public void T4_G04_play_ask_for_input_Jarvis_random_seed_three_rounds() throws Exception {
       Utils.random = new java.util.Random(1);
       runCommands(
           NEW_GAME + " HARD 3",
@@ -657,7 +657,7 @@ public class MainTest {
     }
 
     @Test
-    public void T4_05_play_ask_for_input_Jarvis_random_seed_four_rounds() throws Exception {
+    public void T4_G05_play_ask_for_input_Jarvis_random_seed_four_rounds() throws Exception {
       Utils.random = new java.util.Random(2);
       runCommands(
           NEW_GAME + " HARD 3",
@@ -695,7 +695,7 @@ public class MainTest {
     }
 
     @Test
-    public void T4_06_play_ask_for_input_Jarvis_random_seed_five_rounds() throws Exception {
+    public void T4_G06_play_ask_for_input_Jarvis_random_seed_five_rounds() throws Exception {
       Utils.random = new java.util.Random(1);
       runCommands(
           NEW_GAME + " HARD 5",
@@ -747,7 +747,7 @@ public class MainTest {
     }
 
     @Test
-    public void T5_01_play_ask_for_input_Jarvis() throws Exception {
+    public void T5_G01_play_ask_for_input_Jarvis() throws Exception {
       runCommands(
           NEW_GAME + " MASTER 1",
           "Valerio",
@@ -765,7 +765,7 @@ public class MainTest {
     }
 
     @Test
-    public void T5_02_play_ask_for_input_Jarvis_random_seed() throws Exception {
+    public void T5_G02_play_ask_for_input_Jarvis_random_seed() throws Exception {
       Utils.random = new java.util.Random(1);
       runCommands(
           NEW_GAME + " MASTER 1",
@@ -788,7 +788,7 @@ public class MainTest {
     }
 
     @Test
-    public void T5_03_play_ask_for_input_Jarvis_random_seed_two_rounds() throws Exception {
+    public void T5_G03_play_ask_for_input_Jarvis_random_seed_two_rounds() throws Exception {
       Utils.random = new java.util.Random(1);
       runCommands(
           NEW_GAME + " MASTER 2",
@@ -815,7 +815,7 @@ public class MainTest {
     }
 
     @Test
-    public void T5_04_play_ask_for_input_Jarvis_random_seed_three_rounds() throws Exception {
+    public void T5_G04_play_ask_for_input_Jarvis_random_seed_three_rounds() throws Exception {
       Utils.random = new java.util.Random(1);
       runCommands(
           NEW_GAME + " MASTER 3",
@@ -846,7 +846,7 @@ public class MainTest {
     }
 
     @Test
-    public void T5_05_play_ask_for_input_Jarvis_random_seed_four_rounds() throws Exception {
+    public void T5_G05_play_ask_for_input_Jarvis_random_seed_four_rounds() throws Exception {
       Utils.random = new java.util.Random(2);
       runCommands(
           NEW_GAME + " MASTER 3",
@@ -890,7 +890,7 @@ public class MainTest {
     }
 
     @Test
-    public void T5_06_play_ask_for_input_Jarvis_random_seed_five_rounds() throws Exception {
+    public void T5_G06_play_ask_for_input_Jarvis_random_seed_five_rounds() throws Exception {
       Utils.random = new java.util.Random(1);
       runCommands(
           NEW_GAME + " MASTER 5",
@@ -942,14 +942,14 @@ public class MainTest {
     }
 
     @Test
-    public void T6_01_play_before_start() throws Exception {
+    public void T6_G01_play_before_start() throws Exception {
       runCommands(
           PLAY);
       assertContains(MessageCli.GAME_NOT_STARTED.getMessage());
     }
 
     @Test
-    public void T6_02_start_game_twice() throws Exception {
+    public void T6_G02_start_game_twice() throws Exception {
       Utils.random = new java.util.Random(1);
       runCommands(
           NEW_GAME + " EASY 3",
@@ -969,7 +969,7 @@ public class MainTest {
     }
 
     @Test
-    public void T6_03_wins_one_round() throws Exception {
+    public void T6_G03_wins_one_round() throws Exception {
       Utils.random = new java.util.Random(1);
       runCommands(
           NEW_GAME + " EASY 1",
@@ -984,7 +984,7 @@ public class MainTest {
     }
 
     @Test
-    public void T6_04_jarvis_wins_one_round() throws Exception {
+    public void T6_G04_jarvis_wins_one_round() throws Exception {
       Utils.random = new java.util.Random(1);
       runCommands(
           NEW_GAME + " EASY 1",
@@ -1000,7 +1000,7 @@ public class MainTest {
     }
 
     @Test
-    public void T6_05_human_wins_two_rounds() throws Exception {
+    public void T6_G05_human_wins_two_rounds() throws Exception {
       Utils.random = new java.util.Random(1);
       runCommands(
           NEW_GAME + " EASY 1",
@@ -1022,7 +1022,7 @@ public class MainTest {
     }
 
     @Test
-    public void T6_06_human_wins_two_rounds() throws Exception {
+    public void T6_G06_human_wins_two_rounds() throws Exception {
       Utils.random = new java.util.Random(1);
       runCommands(
           NEW_GAME + " EASY 2",
@@ -1044,7 +1044,7 @@ public class MainTest {
     }
 
     @Test
-    public void T6_07_show_stats_fail() throws Exception {
+    public void T6_G07_show_stats_fail() throws Exception {
       Utils.random = new java.util.Random(1);
       runCommands(
           SHOW_STATS);
@@ -1052,7 +1052,7 @@ public class MainTest {
     }
 
     @Test
-    public void T6_08_show_stats_ok() throws Exception {
+    public void T6_G08_show_stats_ok() throws Exception {
       Utils.random = new java.util.Random(1);
       runCommands(
           NEW_GAME + " EASY 2",
@@ -1087,11 +1087,88 @@ public class MainTest {
     }
 
     @Test
-    public void TY_01_your_own_test() throws Exception {
-      // Write your own test here, in the same format as the other tests.
-      runCommands(Main.Command.HELP);
-      assertContains("[2 arguments]");
+    public void T1_M01_play_ask_for_input_two_rounds_both_wrong_1() throws Exception {
+      runCommands(
+          NEW_GAME + " EASY 2",
+          "Thomas",
+          //
+          PLAY,
+          "a b",
+          "1 1",
+          //
+          PLAY,
+          "5",
+          "5 10");
+      assertContains(START_ROUND.getMessage("1"));
+      assertContains(START_ROUND.getMessage("2"));
+      assertContains(ASK_INPUT.getMessage());
+      assertContains(INVALID_INPUT.getMessage());
+      int[] res = MainTest.getPlay(1, "Thomas", getCaptureOut());
+      assertEquals(1, res[0]);
+      assertEquals(1, res[1]);
+      res = MainTest.getPlay(2, "Thomas", getCaptureOut());
+      assertEquals(5, res[0]);
+      assertEquals(10, res[1]);
+    }
+
+    @Test
+    public void T1_M02_play_ask_for_input_two_rounds_both_wrong_2() throws Exception {
+      runCommands(
+          NEW_GAME + " EASY 2",
+          "Jack",
+          //
+          PLAY,
+          "5 5 5",
+          "0 1",
+          "1 10",
+          //
+          PLAY,
+          "1 0",
+          "6 10",
+          "5 11",
+          "2  5",
+          " 4 8",
+          "5 1");
+      assertContains(START_ROUND.getMessage("1"));
+      assertContains(START_ROUND.getMessage("2"));
+      assertContains(ASK_INPUT.getMessage());
+      assertContains(INVALID_INPUT.getMessage());
+      int[] res = MainTest.getPlay(1, "Jack", getCaptureOut());
+      assertEquals(1, res[0]);
+      assertEquals(10, res[1]);
+      res = MainTest.getPlay(2, "Jack", getCaptureOut());
+      assertEquals(5, res[0]);
+      assertEquals(1, res[1]);
+    }
+
+    @Test
+    public void T1_M03_three_rounds_check_round_number_output() throws Exception {
+      runCommands(
+          NEW_GAME + " EASY 2",
+          "Louis",
+          //
+          PLAY,
+          "5 9 ",
+          //
+          PLAY,
+          "3 7",
+          //
+          PLAY,
+          "1 4");
+      assertContains(START_ROUND.getMessage("1"));
+      assertContains(START_ROUND.getMessage("2"));
+      assertContains(START_ROUND.getMessage("3"));
+      assertContains(ASK_INPUT.getMessage());
+      assertDoesNotContain(INVALID_INPUT.getMessage());
+      int[] res = MainTest.getPlay(1, "Louis", getCaptureOut());
+      assertEquals(5, res[0]);
+      assertEquals(9, res[1]);
+      res = MainTest.getPlay(2, "Louis", getCaptureOut());
+      assertEquals(3, res[0]);
+      assertEquals(7, res[1]);
+      res = MainTest.getPlay(3, "Louis", getCaptureOut());
+      assertEquals(1, res[0]);
+      assertEquals(4, res[1]);
     }
   }
-
 }
