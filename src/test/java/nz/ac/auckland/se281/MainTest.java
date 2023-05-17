@@ -1207,5 +1207,65 @@ public class MainTest {
       assertEquals(7, sumJarvis);
       assertTrue(MainTest.getOutputByRound(2, getOutput()).contains(PRINT_OUTCOME_ROUND.getMessage("AI_WINS")));
     }
+
+    @Test
+    public void T3_M01_play_five_rounds_first_game_new_game_six_rounds_second_game() throws Exception {
+      Utils.random = new java.util.Random(281);
+      runCommands(
+          NEW_GAME + " MEDIUM 10",
+          "Lachlan",
+          // GAME 1
+          PLAY,
+          "1 3",
+          //
+          PLAY,
+          "1 4",
+          //
+          PLAY,
+          "1 2",
+          //
+          PLAY,
+          "1 5",
+          //
+          PLAY,
+          "1 6",
+          // GAME 2
+          NEW_GAME + " MEDIUM 10",
+          "Zack",
+          //
+          PLAY,
+          "5 6",
+          //
+          PLAY,
+          "5 7",
+          //
+          PLAY,
+          "5 8",
+          //
+          PLAY,
+          "5 9",
+          //
+          PLAY,
+          "5 10",
+          //
+          PLAY,
+          "5 1");
+      assertTrue(MainTest.getOutputByRound(1, getOutput()).contains("#1:"));
+      assertContains(ASK_INPUT.getMessage());
+      // GAME 1 ROUND 5
+      int[] res = MainTest.getPlay(5, "Lachlan", getCaptureOut());
+      assertEquals(1, res[0]);
+      assertEquals(6, res[1]);
+      res = MainTest.getPlay(5, "Jarvis", getCaptureOut());
+      assertEquals(1, res[0]);
+      assertEquals(2, res[1]);
+      // GAME 2 ROUND 6
+      res = MainTest.getPlay(6, "Zack", getCaptureOut());
+      assertEquals(5, res[0]);
+      assertEquals(1, res[1]);
+      res = MainTest.getPlay(6, "Jarvis", getCaptureOut());
+      assertEquals(1, res[0]);
+      assertEquals(6, res[1]); // if Jarvis doesn't forget after new game, res[1] will be <4>
+    }
   }
 }
