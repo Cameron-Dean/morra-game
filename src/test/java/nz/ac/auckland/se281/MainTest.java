@@ -1099,8 +1099,8 @@ public class MainTest {
           PLAY,
           "5",
           "5 10");
-      assertContains(START_ROUND.getMessage("1"));
-      assertContains(START_ROUND.getMessage("2"));
+      assertTrue(MainTest.getOutputByRound(1, getOutput()).contains("#1:"));
+      assertTrue(MainTest.getOutputByRound(2, getOutput()).contains("#2:"));
       assertContains(ASK_INPUT.getMessage());
       assertContains(INVALID_INPUT.getMessage());
       int[] res = MainTest.getPlay(1, "Thomas", getCaptureOut());
@@ -1129,8 +1129,8 @@ public class MainTest {
           "2  5",
           " 4 8",
           "5 1");
-      assertContains(START_ROUND.getMessage("1"));
-      assertContains(START_ROUND.getMessage("2"));
+      assertTrue(MainTest.getOutputByRound(1, getOutput()).contains("#1:"));
+      assertTrue(MainTest.getOutputByRound(2, getOutput()).contains("#2:"));
       assertContains(ASK_INPUT.getMessage());
       assertContains(INVALID_INPUT.getMessage());
       int[] res = MainTest.getPlay(1, "Jack", getCaptureOut());
@@ -1155,9 +1155,9 @@ public class MainTest {
           //
           PLAY,
           "1 4");
-      assertContains(START_ROUND.getMessage("1"));
-      assertContains(START_ROUND.getMessage("2"));
-      assertContains(START_ROUND.getMessage("3"));
+      assertTrue(MainTest.getOutputByRound(1, getOutput()).contains("#1:"));
+      assertTrue(MainTest.getOutputByRound(2, getOutput()).contains("#2:"));
+      assertTrue(MainTest.getOutputByRound(3, getOutput()).contains("#3:"));
       assertContains(ASK_INPUT.getMessage());
       assertDoesNotContain(INVALID_INPUT.getMessage());
       int[] res = MainTest.getPlay(1, "Louis", getCaptureOut());
@@ -1169,6 +1169,43 @@ public class MainTest {
       res = MainTest.getPlay(3, "Louis", getCaptureOut());
       assertEquals(1, res[0]);
       assertEquals(4, res[1]);
+    }
+
+    @Test
+    public void T2_M01_play_ask_for_input_Jarvis_random_seed_draw_two_rounds() throws Exception {
+      Utils.random = new java.util.Random(281);
+      runCommands(
+          NEW_GAME + " EASY 1",
+          "Ben",
+          //
+          PLAY,
+          "1 3",
+          //
+          PLAY,
+          "3 6");
+      assertTrue(MainTest.getOutputByRound(1, getOutput()).contains("#1:"));
+      assertContains(ASK_INPUT.getMessage());
+      // ROUND 1
+      int[] res = MainTest.getPlay(1, "Ben", getCaptureOut());
+      assertEquals(1, res[0]);
+      assertEquals(3, res[1]);
+      res = MainTest.getPlay(1, "Jarvis", getCaptureOut());
+      int fingersJarvis = res[0];
+      int sumJarvis = res[1];
+      assertEquals(1, fingersJarvis);
+      assertEquals(6, sumJarvis);
+      assertTrue(MainTest.getOutputByRound(1, getOutput()).contains(PRINT_OUTCOME_ROUND.getMessage("DRAW")));
+      // ROUND 2
+      assertTrue(MainTest.getOutputByRound(2, getOutput()).contains("#2:"));
+      res = MainTest.getPlay(2, "Ben", getCaptureOut());
+      assertEquals(3, res[0]);
+      assertEquals(6, res[1]);
+      res = MainTest.getPlay(2, "Jarvis", getCaptureOut());
+      fingersJarvis = res[0];
+      sumJarvis = res[1];
+      assertEquals(4, fingersJarvis);
+      assertEquals(7, sumJarvis);
+      assertTrue(MainTest.getOutputByRound(2, getOutput()).contains(PRINT_OUTCOME_ROUND.getMessage("AI_WINS")));
     }
   }
 }
