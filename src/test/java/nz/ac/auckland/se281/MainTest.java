@@ -1267,5 +1267,65 @@ public class MainTest {
       assertEquals(1, res[0]);
       assertEquals(6, res[1]); // if Jarvis doesn't forget after new game, res[1] will be <4>
     }
+
+    @Test
+    public void T4_M01_play_five_rounds_first_game_six_rounds_second_game() throws Exception {
+      Utils.random = new java.util.Random(281);
+      runCommands(
+          NEW_GAME + " HARD 10",
+          "Nicholas",
+          // GAME 1
+          PLAY,
+          "1 3",
+          //
+          PLAY,
+          "1 4",
+          //
+          PLAY,
+          "1 2",
+          //
+          PLAY,
+          "1 5",
+          //
+          PLAY,
+          "1 6",
+          // GAME 2
+          NEW_GAME + " HARD 10",
+          "Finn",
+          //
+          PLAY,
+          "5 6",
+          //
+          PLAY,
+          "5 7",
+          //
+          PLAY,
+          "1 2",
+          //
+          PLAY,
+          "2 3",
+          //
+          PLAY,
+          "3 4",
+          //
+          PLAY,
+          "4 5");
+      assertTrue(MainTest.getOutputByRound(1, getOutput()).contains("#1:"));
+      assertContains(ASK_INPUT.getMessage());
+      // GAME 1 ROUND 5
+      int[] res = MainTest.getPlay(5, "Nicholas", getCaptureOut());
+      assertEquals(1, res[0]);
+      assertEquals(6, res[1]);
+      res = MainTest.getPlay(5, "Jarvis", getCaptureOut());
+      assertEquals(1, res[0]);
+      assertEquals(2, res[1]);
+      // GAME 2 ROUND 6
+      res = MainTest.getPlay(6, "Finn", getCaptureOut());
+      assertEquals(4, res[0]);
+      assertEquals(5, res[1]);
+      res = MainTest.getPlay(6, "Jarvis", getCaptureOut());
+      assertEquals(1, res[0]);
+      assertEquals(6, res[1]); // if Jarvis doesn't forget after new game, res[1] will be <1>
+    }
   }
 }
