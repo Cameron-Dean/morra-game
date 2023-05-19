@@ -1326,7 +1326,7 @@ public class MainTest {
       assertEquals(5, res[1]);
       res = MainTest.getPlay(6, "Jarvis", getCaptureOut());
       assertEquals(1, res[0]);
-      assertEquals(6, res[1]); // if Jarvis doesn't forget after new game, res[1] will be <1>
+      assertEquals(6, res[1]); // if Jarvis doesn't forget after new game, res[1] will be <2>
     }
 
     @Test
@@ -1407,6 +1407,99 @@ public class MainTest {
       res = MainTest.getPlay(7, "Jarvis", getCaptureOut());
       assertEquals(1, res[0]);
       assertEquals(6, res[1]);
+    }
+
+    @Test
+    public void T05_M02_forget_previous_game_when_new_game_started() throws Exception {
+      Utils.random = new java.util.Random(281);
+      runCommands(
+          NEW_GAME + " MASTER 10",
+          "Max",
+          //
+          PLAY,
+          "1 2",
+          //
+          PLAY,
+          "1 3",
+          //
+          PLAY,
+          "1 4",
+          //
+          PLAY,
+          "1 5",
+          //
+          PLAY,
+          "1 6",
+          //
+          NEW_GAME + " MASTER 10",
+          "Henry",
+          //
+          PLAY,
+          "5 10",
+          //
+          PLAY,
+          "5 9",
+          //
+          PLAY,
+          "5 8",
+          //
+          PLAY,
+          "5 7",
+          //
+          PLAY,
+          "5 6",
+          //
+          PLAY,
+          "5 8");
+      // GAME 2 ROUND 6
+      int[] res = MainTest.getPlay(6, "Henry", getCaptureOut());
+      assertEquals(5, res[0]);
+      assertEquals(8, res[1]);
+      res = MainTest.getPlay(6, "Jarvis", getCaptureOut());
+      assertEquals(1, res[0]);
+      assertEquals(6, res[1]); // if Jarvis doesn't forget after new game, res[1] will be <4>
+    }
+
+    @Test
+    public void T06_M01_start_new_game_after_winning() throws Exception {
+      Utils.random = new java.util.Random(281);
+      runCommands(
+          NEW_GAME + " EASY 1",
+          "Sam",
+          //
+          PLAY,
+          "1 3",
+          //
+          PLAY,
+          "1 4",
+          //
+          PLAY,
+          "1 3",
+          //
+          NEW_GAME + " MASTER 10",
+          "Chris",
+          //
+          PLAY,
+          "5 6",
+          //
+          PLAY,
+          "5 7",
+          //
+          PLAY,
+          "5 8",
+          //
+          PLAY,
+          "5 9");
+      assertContains(START_ROUND.getMessage("1"));
+      assertContains(ASK_INPUT.getMessage());
+      assertTrue(MainTest.getOutputByRound(3, getOutput()).contains(PRINT_OUTCOME_ROUND.getMessage("HUMAN_WINS")));
+      // GAME 2 ROUND 4
+      int[] res = MainTest.getPlay(4, "Chris", getCaptureOut());
+      assertEquals(5, res[0]);
+      assertEquals(9, res[1]);
+      res = MainTest.getPlay(4, "Jarvis", getCaptureOut());
+      assertEquals(1, res[0]);
+      assertEquals(6, res[1]); // if Jarvis doesn't forget after new game, res[1] will be <4>
     }
   }
 }
