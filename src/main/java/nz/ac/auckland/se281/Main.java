@@ -1,5 +1,5 @@
 package nz.ac.auckland.se281;
- 
+
 /** You cannot modify this class! */
 public class Main {
 
@@ -10,7 +10,7 @@ public class Main {
     MASTER;
 
     public static boolean isValidEnum(String s) {
-      // return true if it is a valid enum (to cehck for valid input)
+      // return true if it is a valid enum (to check for valid input)
       for (Difficulty d : values()) {
         if (d.name().equals(s)) {
           return true;

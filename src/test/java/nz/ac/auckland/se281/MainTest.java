@@ -1489,17 +1489,35 @@ public class MainTest {
           "5 8",
           //
           PLAY,
-          "5 9");
+          "4 9");
       assertContains(START_ROUND.getMessage("1"));
       assertContains(ASK_INPUT.getMessage());
       assertTrue(MainTest.getOutputByRound(3, getOutput()).contains(PRINT_OUTCOME_ROUND.getMessage("HUMAN_WINS")));
+      assertDoesNotContain(PRINT_OUTCOME_ROUND.getMessage("AI_WINS"));
       // GAME 2 ROUND 4
       int[] res = MainTest.getPlay(4, "Chris", getCaptureOut());
-      assertEquals(5, res[0]);
+      assertEquals(4, res[0]);
       assertEquals(9, res[1]);
       res = MainTest.getPlay(4, "Jarvis", getCaptureOut());
       assertEquals(1, res[0]);
       assertEquals(6, res[1]); // if Jarvis doesn't forget after new game, res[1] will be <4>
+    }
+
+    @Test
+    public void T06_M02_cannot_play_game_if_ended() throws Exception {
+      Utils.random = new java.util.Random(281);
+      runCommands(
+          NEW_GAME + " EASY 1",
+          "Mike",
+          //
+          PLAY,
+          "1 2",
+          //
+          PLAY);
+      assertContains(START_ROUND.getMessage("1"));
+      assertContains(ASK_INPUT.getMessage());
+      assertContains(END_GAME.getMessage("Mike", "1"));
+      assertContains(GAME_NOT_STARTED.getMessage());
     }
   }
 }
