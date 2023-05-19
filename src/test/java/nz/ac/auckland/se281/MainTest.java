@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.junit.Test;
@@ -1326,6 +1327,86 @@ public class MainTest {
       res = MainTest.getPlay(6, "Jarvis", getCaptureOut());
       assertEquals(1, res[0]);
       assertEquals(6, res[1]); // if Jarvis doesn't forget after new game, res[1] will be <1>
+    }
+
+    @Test
+    public void T5_M01_play_seven_rounds() throws Exception {
+      Utils.random = new java.util.Random(281);
+      runCommands(
+          NEW_GAME + " MASTER 10",
+          "Luke",
+          // 1
+          PLAY,
+          "1 2",
+          // 2
+          PLAY,
+          "1 3",
+          // 3
+          PLAY,
+          "2 4",
+          // 4
+          PLAY,
+          "5 6",
+          // 5
+          PLAY,
+          "5 7",
+          // 6
+          PLAY,
+          "5 8",
+          // 7
+          PLAY,
+          "5 9");
+      assertTrue(MainTest.getOutputByRound(1, getOutput()).contains("#1:"));
+      assertContains(ASK_INPUT.getMessage());
+      // ROUND 1
+      int[] res = MainTest.getPlay(1, "Luke", getCaptureOut());
+      assertEquals(1, res[0]);
+      assertEquals(2, res[1]);
+      res = MainTest.getPlay(1, "Jarvis", getCaptureOut());
+      assertEquals(1, res[0]);
+      assertEquals(6, res[1]);
+      // ROUND 2
+      res = MainTest.getPlay(2, "Luke", getCaptureOut());
+      assertEquals(1, res[0]);
+      assertEquals(3, res[1]);
+      res = MainTest.getPlay(2, "Jarvis", getCaptureOut());
+      assertEquals(4, res[0]);
+      assertEquals(7, res[1]);
+      // ROUND 3
+      res = MainTest.getPlay(3, "Luke", getCaptureOut());
+      assertEquals(2, res[0]);
+      assertEquals(4, res[1]);
+      res = MainTest.getPlay(3, "Jarvis", getCaptureOut());
+      assertEquals(2, res[0]);
+      assertEquals(6, res[1]);
+      // ROUND 4
+      res = MainTest.getPlay(4, "Luke", getCaptureOut());
+      assertEquals(5, res[0]);
+      assertEquals(6, res[1]);
+      res = MainTest.getPlay(4, "Jarvis", getCaptureOut());
+      assertEquals(3, res[0]);
+      assertEquals(4, res[1]);
+      // ROUND 5
+      res = MainTest.getPlay(5, "Luke", getCaptureOut());
+      assertEquals(5, res[0]);
+      assertEquals(7, res[1]);
+      res = MainTest.getPlay(5, "Jarvis", getCaptureOut());
+      assertEquals(1, res[0]);
+      assertEquals(2, res[1]);
+      // ROUND 6
+      res = MainTest.getPlay(6, "Luke", getCaptureOut());
+      assertEquals(5, res[0]);
+      assertEquals(8, res[1]);
+      res = MainTest.getPlay(6, "Jarvis", getCaptureOut());
+      assertEquals(4, res[0]);
+      assertEquals(7, res[1]);
+      // ROUND 7
+      res = MainTest.getPlay(7, "Luke", getCaptureOut());
+      assertEquals(5, res[0]);
+      assertEquals(9, res[1]);
+      res = MainTest.getPlay(7, "Jarvis", getCaptureOut());
+      assertEquals(1, res[0]);
+      assertEquals(6, res[1]);
     }
   }
 }
