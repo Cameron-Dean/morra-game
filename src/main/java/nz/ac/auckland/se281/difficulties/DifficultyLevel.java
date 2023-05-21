@@ -6,7 +6,7 @@ public abstract class DifficultyLevel {
 
   protected Strategy strategy;
 
-  public abstract void setStrategy();
+  protected abstract void setStrategy();
 
   public int[] getPlay() {
     setStrategy();

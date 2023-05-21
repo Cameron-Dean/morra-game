@@ -5,7 +5,7 @@ import nz.ac.auckland.se281.strategies.RandomStrategy;
 public class EasyDifficulty extends DifficultyLevel {
 
   @Override
-  public void setStrategy() {
+  protected void setStrategy() {
     super.strategy = new RandomStrategy();
   }
 }

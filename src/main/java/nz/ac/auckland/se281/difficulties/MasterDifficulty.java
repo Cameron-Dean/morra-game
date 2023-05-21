@@ -15,7 +15,7 @@ public class MasterDifficulty extends DifficultyLevel {
   }
 
   @Override
-  public void setStrategy() {
+  protected void setStrategy() {
     if (rounds.size() <= 3) {
       super.strategy = new RandomStrategy();
     } else if (rounds.size() % 2 == 0) {
