@@ -1520,7 +1520,7 @@ public class MainTest {
       assertContains(GAME_NOT_STARTED.getMessage());
     }
 
-    /* Josiah Sterling's Test Cases */
+    /* Other's Test Cases */
 
     @Test
     public void T7_01_running_showstats_after_game() throws Exception {
