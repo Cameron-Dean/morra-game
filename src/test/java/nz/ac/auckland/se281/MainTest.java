@@ -1519,5 +1519,262 @@ public class MainTest {
       assertContains(END_GAME.getMessage("Mike", "1"));
       assertContains(GAME_NOT_STARTED.getMessage());
     }
+
+    /* Josiah Sterling's Test Cases */
+
+    @Test
+    public void T7_01_running_showstats_after_game() throws Exception {
+
+      Utils.random = new java.util.Random(1);
+      runCommands(NEW_GAME
+          + " EASY 2",
+          "Anonymous",
+          PLAY, "1 2");
+
+    }
+
+    @Test
+    public void T7_02_show_stats_win() throws Exception {
+      Utils.random = new java.util.Random(1);
+      runCommands(
+
+          NEW_GAME + " EASY 2",
+          "Person",
+          PLAY, "1 2",
+          PLAY, "1 4",
+          SHOW_STATS);
+      assertContains(PRINT_OUTCOME_ROUND.getMessage("HUMAN_WINS"));
+      assertContains(GAME_NOT_STARTED.getMessage()); // checks if the showstats command works after a win
+    }
+
+    @Test
+    public void T7_02_show_stats_loss() throws Exception {
+      Utils.random = new java.util.Random(1);
+      runCommands(
+
+          NEW_GAME + " EASY 2",
+          "HuMan",
+          PLAY, "4 2",
+          PLAY, "4 4",
+          SHOW_STATS);
+
+      assertContains(PRINT_OUTCOME_ROUND.getMessage("AI_WINS"));
+      assertContains(GAME_NOT_STARTED.getMessage());// checks if the showstats command works after a loss
+    }
+
+    @Test
+    public void T7_02_all_numbers_easy() throws Exception {
+      Utils.random = new java.util.Random(1);
+      runCommands(
+
+          NEW_GAME + " EASY 10",
+          "HuMan",
+          PLAY, "4 1",
+          PLAY, "4 1",
+          PLAY, "5 1",
+          PLAY, "2 1",
+          PLAY, "4 1",
+          PLAY, "4 1",
+          PLAY, "4 1",
+          PLAY, "5 1",
+          PLAY, "3 1",
+          SHOW_STATS,
+          PLAY, "5 1",
+          SHOW_STATS);
+      assertContains(PRINT_PLAYER_WINS.getMessage("HuMan", "0", "10"));
+      assertContains(PRINT_PLAYER_WINS.getMessage("Jarvis", "9", "1"));
+      assertContains(END_GAME.getMessage("Jarvis", "10"));
+      assertContains(GAME_NOT_STARTED.getMessage());
+    }
+
+    @Test
+    public void T7_02_all_numbers_medium() throws Exception {
+      Utils.random = new java.util.Random(1);
+      runCommands(
+
+          NEW_GAME + " MEDIUM 10",
+          "HuMan",
+          PLAY, "4 1",
+          PLAY, "4 1",
+          PLAY, "5 1",
+          PLAY, "4 1",
+          PLAY, "4 1",
+          PLAY, "4 1",
+          PLAY, "4 1",
+          PLAY, "4 1",
+          PLAY, "4 1",
+          SHOW_STATS,
+          PLAY, "4 1",
+          SHOW_STATS);
+      assertContains(PRINT_PLAYER_WINS.getMessage("HuMan", "0", "10"));
+      assertContains(PRINT_PLAYER_WINS.getMessage("Jarvis", "9", "1"));
+      assertContains(END_GAME.getMessage("Jarvis", "10"));
+      assertContains(GAME_NOT_STARTED.getMessage());
+    }
+
+    @Test
+    public void T7_02_all_numbers_hard() throws Exception {
+      Utils.random = new java.util.Random(1);
+      runCommands(
+
+          NEW_GAME + " HARD 10",
+          "HuMan",
+          PLAY, "4 1",
+          PLAY, "4 1",
+          PLAY, "5 1",
+          PLAY, "4 1",
+          PLAY, "4 1",
+          PLAY, "4 1",
+          PLAY, "4 1",
+          PLAY, "4 1",
+          PLAY, "4 1",
+          SHOW_STATS,
+          PLAY, "4 1",
+          SHOW_STATS);
+      assertContains(PRINT_PLAYER_WINS.getMessage("HuMan", "0", "10"));
+      assertContains(PRINT_PLAYER_WINS.getMessage("Jarvis", "9", "1"));
+      assertContains(END_GAME.getMessage("Jarvis", "10"));
+      assertContains(GAME_NOT_STARTED.getMessage());
+    }
+
+    @Test
+    public void T7_02_all_numbers_master() throws Exception {
+      Utils.random = new java.util.Random(1);
+      runCommands(
+
+          NEW_GAME + " MASTER 10",
+          "HuMan",
+          PLAY, "4 1",
+          PLAY, "4 1",
+          PLAY, "5 1",
+          PLAY, "4 1",
+          PLAY, "4 1",
+          PLAY, "4 1",
+          PLAY, "4 1",
+          PLAY, "4 1",
+          PLAY, "4 1",
+          SHOW_STATS,
+          PLAY, "4 1",
+          SHOW_STATS);
+      assertContains(PRINT_PLAYER_WINS.getMessage("HuMan", "0", "10"));
+      assertContains(PRINT_PLAYER_WINS.getMessage("Jarvis", "9", "1"));
+      assertContains(END_GAME.getMessage("Jarvis", "10"));
+      assertContains(GAME_NOT_STARTED.getMessage());
+    }
+
+    @Test
+    public void T7_02_was_array_cleared_medium() throws Exception {
+      Utils.random = new java.util.Random(1);
+      runCommands(
+
+          NEW_GAME + " EASY 2",
+          "HuMan",
+          PLAY, "4 1",
+          SHOW_STATS,
+          PLAY, "4 1",
+          SHOW_STATS,
+          NEW_GAME + " Medium 4",
+          "HuMmis",
+          PLAY, "5 9",
+          PLAY, "2 10",
+          PLAY, "4 10",
+          SHOW_STATS,
+          PLAY, "4 1");
+      assertContains(PRINT_PLAYER_WINS.getMessage("HuMmis", "0", "4"));
+      assertContains(PRINT_PLAYER_WINS.getMessage("Jarvis", "3", "1"));
+      assertDoesNotContain(PRINT_PLAYER_WINS.getMessage("Jarvis", "2", "2"));
+    }
+
+    @Test
+    public void T7_02_was_array_cleared_hard() throws Exception {
+      Utils.random = new java.util.Random(1);
+      runCommands(
+
+          NEW_GAME + " EASY 2",
+          "HuMan",
+          PLAY, "4 1",
+          SHOW_STATS,
+          PLAY, "4 1",
+          SHOW_STATS,
+          NEW_GAME + " Medium 4",
+          "HuMmis",
+          PLAY, "5 9",
+          PLAY, "2 10",
+          PLAY, "4 10",
+          SHOW_STATS,
+          PLAY, "4 1");
+      assertContains(PRINT_PLAYER_WINS.getMessage("HuMmis", "0", "4"));
+      assertContains(PRINT_PLAYER_WINS.getMessage("Jarvis", "3", "1"));
+      assertDoesNotContain(PRINT_PLAYER_WINS.getMessage("Jarvis", "2", "2"));
+    }
+
+    @Test
+    public void T7_02_was_array_cleared_master() throws Exception {
+      Utils.random = new java.util.Random(1);
+      runCommands(
+
+          NEW_GAME + " EASY 2",
+          "HuMan",
+          PLAY, "4 1",
+          SHOW_STATS,
+          PLAY, "4 1",
+          SHOW_STATS,
+          NEW_GAME + " Medium 4",
+          "HuMmis",
+          PLAY, "5 9",
+          PLAY, "2 10",
+          PLAY, "4 10",
+          SHOW_STATS,
+          PLAY, "4 1");
+      assertContains(PRINT_PLAYER_WINS.getMessage("HuMmis", "0", "4"));
+      assertContains(PRINT_PLAYER_WINS.getMessage("Jarvis", "3", "1"));
+      assertDoesNotContain(PRINT_PLAYER_WINS.getMessage("Jarvis", "2", "2"));
+    }
+
+    @Test
+    public void T7_02_round_counter_check() throws Exception {
+      Utils.random = new java.util.Random(1);
+      runCommands(
+
+          NEW_GAME + " EASY 1",
+          "HuMan",
+          PLAY, "4 2",
+          NEW_GAME + " EASY 1",
+          "HuMan",
+          PLAY, "4 2");
+
+      assertContains(START_ROUND.getMessage("1"));
+      assertDoesNotContain(START_ROUND.getMessage("0"));
+      assertDoesNotContain(START_ROUND.getMessage("2"));
+    }
+
+    @Test
+    public void TY_01_attempt_at_running_invalid_commands_when_asking_for_fingers_and_sum()
+        throws Exception {
+      runCommands(
+          NEW_GAME + " EASY 10",
+          "Valerio",
+          //
+          PLAY,
+          NEW_GAME,
+          PLAY,
+          "1 5");
+
+      assertContains(ASK_INPUT.getMessage());
+      assertContains(INVALID_INPUT.getMessage());
+    }
+
+    @Test
+    public void TY_02_attempt_show_stats_after_game_finish() throws Exception {
+      Utils.random = new java.util.Random(1);
+      runCommands(
+          NEW_GAME + " EASY 1",
+          "Valerio",
+          //
+          PLAY,
+          "1 2",
+          SHOW_STATS);
+      assertContains(GAME_NOT_STARTED.getMessage());
+    }
   }
 }
