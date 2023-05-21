@@ -115,7 +115,7 @@ public abstract class CliTest {
    * @param commands the strings of commands to be run
    * @throws NoSuchElementException
    * @throws SecurityException
-   * @throws InstantiattionException
+   * @throws InstantiationException
    * @throws IllegalAccessException
    * @throws IllegalArgumentException
    * @throws NoSuchMethodException

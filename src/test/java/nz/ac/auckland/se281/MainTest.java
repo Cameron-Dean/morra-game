@@ -6,7 +6,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.junit.Test;
@@ -1523,7 +1522,7 @@ public class MainTest {
     /* Other's Test Cases */
 
     @Test
-    public void T7_01_running_showstats_after_game() throws Exception {
+    public void T7_01_running_show_stats_after_game() throws Exception {
 
       Utils.random = new java.util.Random(1);
       runCommands(NEW_GAME
@@ -1544,7 +1543,7 @@ public class MainTest {
           PLAY, "1 4",
           SHOW_STATS);
       assertContains(PRINT_OUTCOME_ROUND.getMessage("HUMAN_WINS"));
-      assertContains(GAME_NOT_STARTED.getMessage()); // checks if the showstats command works after a win
+      assertContains(GAME_NOT_STARTED.getMessage()); // checks if the show-stats command works after a win
     }
 
     @Test
@@ -1559,7 +1558,7 @@ public class MainTest {
           SHOW_STATS);
 
       assertContains(PRINT_OUTCOME_ROUND.getMessage("AI_WINS"));
-      assertContains(GAME_NOT_STARTED.getMessage());// checks if the showstats command works after a loss
+      assertContains(GAME_NOT_STARTED.getMessage());// checks if the show-stats command works after a loss
     }
 
     @Test
